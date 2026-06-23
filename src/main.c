@@ -26,7 +26,7 @@
 #define KERNEL_UART_BUF_SIZE  1024
 #define KERNEL_UART_BAUD      115200
 
-// Shit does not work yet please stay tuned
+// This part does not work yet please stay tuned
 #define SMC_UART_NUM          UART_NUM_1
 #define SMC_UART_ESP32_RX     GPIO_NUM_21  // D21 - ESP32 RX (from Xbox SMC TX)
 #define SMC_UART_ESP32_TX     GPIO_NUM_22  // D22 - ESP32 TX (to Xbox SMC RX)
@@ -297,7 +297,7 @@ static void IRAM_ATTR gpio_isr_handler(void *arg) {
 
     static uint8_t last_stable = 0xFF;
 
-    // Only accept when post code changes (again due to my shitty noisy code yep)
+    // Only accept when post code changes (again due to my noisy code yep)
     if (final != last_stable && final != 0x00) {
         uint32_t current_count = capture_count;
         if (current_count < MAX_CAPTURED_CODES) {
@@ -503,7 +503,7 @@ void app_main(void) {
             last_code_time = ts;
 
             if (post_codes_enabled) {
-                // Don't listen before 1BL is hit because my shitty code introduces noise and a lot of it
+                // Don't listen before 1BL is hit because my code introduces noise and a lot of it
                 if (!boot_started) {
                     if (code == 0x10) {
                         boot_started = true;
